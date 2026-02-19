@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Registration Confirmation - Automatic Borewell Starter</title>
+    <style>
+        /* Reset styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        img {
+            border: 0;
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Container */
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #D32F2F 0%, #F44336 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .telugu {
+            font-size: 20px;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            margin-top: 10px;
+            opacity: 0.95;
+        }
+
+        /* Success Icon */
+        .success-icon {
+            text-align: center;
+            padding: 30px 20px 20px;
+            background-color: #fff;
+        }
+
+        .success-icon .icon {
+            width: 80px;
+            height: 80px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 80px; /* Vertically center the tick */
+            font-size: 48px;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+            display: block;
+        }
+
+        /* Content */
+        .content {
+            padding: 0 30px 30px;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #D32F2F;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .greeting-telugu {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        /* Code Box */
+        .code-box {
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFF59D 100%);
+            border: 3px dashed #F57C00;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .code-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .code-label-telugu {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .registration-code {
+            font-size: 32px;
+            font-weight: 700;
+            color: #D32F2F;
+            letter-spacing: 3px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .code-instruction {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Details Box */
+        .details-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #388E3C;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .details-title {
+            font-size: 18px;
+            color: #D32F2F;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-row {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #666;
+            width: 40%;
+            font-size: 14px;
+        }
+
+        .detail-value {
+            color: #333;
+            width: 60%;
+            font-size: 14px;
+        }
+
+        /* Offer Box */
+        .offer-box {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            border: 2px solid #D32F2F;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.15);
+        }
+
+        .offer-title {
+            font-size: 22px;
+            color: #D32F2F;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .offer-item {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+            font-size: 15px;
+        }
+
+        .offer-icon {
+            color: #388E3C;
+            font-size: 20px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .offer-text {
+            color: #333;
+        }
+
+        .offer-text-telugu {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .offer-validity {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed #D32F2F;
+            font-weight: 600;
+            color: #D32F2F;
+            font-size: 15px;
+        }
+
+        /* Benefits Box */
+        .benefits-box {
+            background-color: #E8F5E9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .benefits-title {
+            font-size: 18px;
+            color: #2E7D32;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .benefit-item {
+            padding: 10px;
+            margin: 8px 0;
+            background-color: white;
+            border-radius: 5px;
+            border-left: 3px solid #4CAF50;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Next Steps */
+        .steps-box {
+            background-color: #E3F2FD;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .steps-title {
+            font-size: 18px;
+            color: #1976D2;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+        }
+
+        .step-number {
+            background-color: #1976D2;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+            padding-top: 4px;
+        }
+
+        .step-text-telugu {
+            font-size: 13px;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        /* CTA Button */
+        .cta-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #D32F2F 0%, #F44336 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+        }
+
+        /* Contact Box */
+        .contact-box {
+            background-color: #1976D2;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .contact-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact-item {
+            margin: 10px 0;
+            font-size: 15px;
+        }
+
+        .contact-item a {
+            color: #FFF59D;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: #ffffff;
+            padding: 25px 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+
+        .footer .telugu-footer {
+            font-size: 14px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .footer a {
+            color: #FFF59D;
+            text-decoration: none;
+        }
+
+        /* Divider */
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #D32F2F, transparent);
+            margin: 20px 0;
+        }
+
+        /* Responsive */
+        @media only screen and (max-width: 600px) {
+            .content {
+                padding: 0 15px 20px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .registration-code {
+                font-size: 24px;
+                letter-spacing: 2px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+            }
+
+            .detail-label,
+            .detail-value {
+                width: 100%;
+            }
+
+            .detail-label {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4;">
+    <tr>
+        <td align="center" style="padding: 20px 0;">
+            <table class="email-container" role="presentation" cellpadding="0" cellspacing="0" width="600">
+
+                <!-- Header -->
+                <tr>
+                    <td class="header">
+                        <h1>🎉 Registration Successful! 🎉</h1>
+                        <p class="telugu">రిజిస్ట్రేషన్ విజయవంతం!</p>
+                        <p class="subtitle">Vajrastra(AI Controller) - Rythu Badi Agri Show 2026</p>
+                    </td>
+                </tr>
+
+                <!-- Success Icon -->
+                <tr>
+                    <td class="success-icon">
+                        <div class="icon">✓</div>
+                    </td>
+                </tr>
+
+                <!-- Content -->
+                <tr>
+                    <td class="content">
+                        <!-- Greeting -->
+                        <p class="greeting">Hello ${name}!</p>
+                        <p class="greeting-telugu">నమస్కారం ${name} గారూ! 🙏</p>
+
+                        <p class="message">
+                            <strong>Thank you for registering at Rythu Badi Agri Show 2026!</strong><br>
+                            We're excited to show you how our Automatic Borewell Starter can transform your farming experience.
+                        </p>
+
+                        <p class="message">
+                            <strong>రైతు బడి ఎగ్రి షో 2026లో రిజిస్టర్ అయినందుకు ధన్యవాదాలు!</strong><br>
+                            మా ఆటోమేటిక్ బోరుబావి స్టార్టర్ మీ వ్యవసాయ అనుభవాన్ని ఎలా మార్చగలదో చూపించడానికి మేము సంతోషిస్తున్నాము.
+                        </p>
+
+                        <!-- Registration Code Box -->
+                        <div class="code-box">
+                            <p class="code-label">YOUR UNIQUE REGISTRATION CODE</p>
+                            <p class="code-label-telugu">మీ ప్రత్యేక రిజిస్ట్రేషన్ కోడ్</p>
+                            <div class="registration-code">${registrationCode}</div>
+                            <p class="code-instruction">
+                                📌 Save this code safely. Show it at our booth to get special benefits!<br>
+                                📌 ఈ కోడ్‌ను సురక్షితంగా భద్రపరచండి. స్పెషల్ బెనిఫిట్స్ కోసం మా బూత్‌లో చూపించండి!
+                            </p>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <!-- Your Details -->
+                        <div class="details-box">
+                            <div class="details-title">
+                                📋 Your Registration Details / మీ రిజిస్ట్రేషన్ వివరాలు
+                            </div>
+
+                            <div class="detail-row">
+                                <div class="detail-label">👤 Name / పేరు:</div>
+                                <div class="detail-value">${name}</div>
+                            </div>
+
+                            <div class="detail-row">
+                                <div class="detail-label">📞 Phone / ఫోన్:</div>
+                                <div class="detail-value">${phone}</div>
+                            </div>
+
+                            <div class="detail-row">
+                                <div class="detail-label">📧 Email / ఇమెయిల్:</div>
+                                <div class="detail-value">${email}</div>
+                            </div>
+
+                            <div class="detail-row">
+                                <div class="detail-label">🏠 Address / చిరునామా:</div>
+                                <div class="detail-value">${address}</div>
+                            </div>
+
+                            <div class="detail-row">
+                                <div class="detail-label">📍 Mandal / మండలం:</div>
+                                <div class="detail-value">${mandal}</div>
+                            </div>
+
+                            <div class="detail-row">
+                                <div class="detail-label">🏛️ District / జిల్లా:</div>
+                                <div class="detail-value">${district}</div>
+                            </div>
+
+                            <div class="detail-row">
+                                <div class="detail-label">🗺️ State / రాష్ట్రం:</div>
+                                <div class="detail-value">${state}</div>
+                            </div>
+
+                            <div class="detail-row">
+                                <div class="detail-label">📮 Pincode / పిన్‌కోడ్:</div>
+                                <div class="detail-value">${pincode}</div>
+                            </div>
+
+                            <div class="detail-row">
+                                <div class="detail-label">⚠️ Current Problems / ప్రస్తుత సమస్యలు:</div>
+                                <div class="detail-value">${facingProblems}</div>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <!-- Exhibition Offer -->
+                        <div class="offer-box">
+                            <div class="offer-title">
+                                🎯 EXHIBITION SPECIAL OFFER! 🎯<br>
+                                <span style="font-size: 18px;">ఎగ్జిబిషన్ స్పెషల్ ఆఫర్!</span>
+                            </div>
+
+                            <div class="offer-item">
+                                <span class="offer-icon">✅</span>
+                                <div>
+                                    <div class="offer-text"><strong>₹2,000 Discount</strong> - Exhibition Price</div>
+                                    <div class="offer-text-telugu">₹2,000 తగ్గింపు - ఎగ్జిబిషన్ ధర</div>
+                                </div>
+                            </div>
+
+                            <div class="offer-item">
+                                <span class="offer-icon">✅</span>
+                                <div>
+                                    <div class="offer-text"><strong>FREE Installation</strong> - Worth ₹1,500</div>
+                                    <div class="offer-text-telugu">ఫ్రీ ఇన్‌స్టాలేషన్ - ₹1,500 విలువ</div>
+                                </div>
+                            </div>
+
+                            <div class="offer-item">
+                                <span class="offer-icon">✅</span>
+                                <div>
+                                    <div class="offer-text"><strong>2 Year Warranty</strong> - Extended Coverage</div>
+                                    <div class="offer-text-telugu">2 సంవత్సరాల వారంటీ - పొడిగించిన కవరేజ్</div>
+                                </div>
+                            </div>
+
+                            <div class="offer-item">
+                                <span class="offer-icon">✅</span>
+                                <div>
+                                    <div class="offer-text"><strong>24/7 Technical Support</strong> - Always Available</div>
+                                    <div class="offer-text-telugu">24/7 టెక్నికల్ సపోర్ట్ - ఎల్లప్పుడూ అందుబాటులో</div>
+                                </div>
+                            </div>
+
+                            <div class="offer-item">
+                                <span class="offer-icon">✅</span>
+                                <div>
+                                    <div class="offer-text"><strong>FREE SMS Alerts</strong> - Real-time Notifications</div>
+                                    <div class="offer-text-telugu">ఫ్రీ SMS అలర్ట్స్ - రియల్-టైమ్ నోటిఫికేషన్స్</div>
+                                </div>
+                            </div>
+
+                            <div class="offer-validity">
+                                ⏰ Offer Valid: 20-21-22 February 2026<br>
+                                ⏰ ఆఫర్ చెల్లుబాటు: 20-21-22 ఫిబ్రవరి 2026
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <!-- Benefits -->
+                        <div class="benefits-box">
+                            <div class="benefits-title">
+                                🌟 What You'll Get / మీకు లభించేవి 🌟
+                            </div>
+
+                            <div class="benefit-item">
+                                📱 <strong>Mobile Control</strong> - Operate pump from anywhere using phone/tablet/computer<br>
+                                మొబైల్ నియంత్రణ - ఫోన్/ట్యాబ్లెట్/కంప్యూటర్ ఉపయోగించి ఎక్కడి నుండైనా పంపును నియంత్రించండి
+                            </div>
+
+                            <div class="benefit-item">
+                                🛡️ <strong>Auto Protection</strong> - Prevents motor damage from dry running & voltage fluctuations<br>
+                                ఆటో ప్రొటెక్షన్ - డ్రై రన్నింగ్ & వోల్టేజ్ హెచ్చుతగ్గుల నుండి మోటార్ నష్టాన్ని నివారిస్తుంది
+                            </div>
+
+                            <div class="benefit-item">
+                                ⏰ <strong>Timer Settings</strong> - Set automatic ON/OFF schedules<br>
+                                టైమర్ సెట్టింగ్స్ - ఆటోమేటిక్ ON/OFF షెడ్యూల్స్ సెట్ చేయండి
+                            </div>
+
+                            <div class="benefit-item">
+                                💡 <strong>Energy Saving</strong> - Reduces electricity wastage significantly<br>
+                                ఎనర్జీ సేవింగ్ - విద్యుత్ వ్యర్థాన్ని గణనీయంగా తగ్గిస్తుంది
+                            </div>
+
+                            <div class="benefit-item">
+                                📲 <strong>SMS Alerts</strong> - Get notified about pump status on your mobile<br>
+                                SMS అలర్ట్స్ - మీ మొబైల్‌లో పంపు స్థితి గురించి తెలియజేయబడతారు
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+
+                        <!-- CTA Button -->
+                        <div class="cta-container">
+                            <a href="tel:+918500930088" class="cta-button">
+                                📞 Call Us Now / ఇప్పుడే కాల్ చేయండి
+                            </a>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="contact-box">
+                            <div class="contact-title">
+                                📞 Contact Us / మమ్మల్ని సంప్రదించండి
+                            </div>
+
+                            <div class="contact-item">
+                                <strong>Phone / ఫోన్:</strong> <a href="tel:+919000078933">+91 90000 78933</a>
+                            </div>
+
+                            <div class="contact-item">
+                                <strong>WhatsApp:</strong> <a href="https://wa.me/918500930088">+91 85009 30088</a>
+                            </div>
+
+                            <div class="contact-item">
+                                <strong>Email:</strong> <a href="mailto:info@borewellstarter.com">hello@theja.in</a>
+                            </div>
+
+                            <div class="contact-item" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                                <strong>📍 Booth Location / బూత్ స్థానం:</strong><br>
+                                Booth No: Hall B - 103<br>
+                                Rythu Badi Agri Show Ground<br>
+                                Timings: 9:00 AM - 6:00 PM<br>
+                                Dates: 20-21-22 February 2026
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td class="footer">
+                        <p><strong>Vajrastra(AI Controller)</strong></p>
+                        <p>The device that thinks</p>
+                        <p>Theja Technologies Private Limited</p>
+                        <p>📧 hello@theja.in | 📞 +91 9000078933/ +91 8500930088</p>
+                        <p style="margin-top: 15px; font-size: 11px; opacity: 0.8;">
+                            This email was sent because you registered at Rythu Badi Agri Show 2026.<br>
+                            Please do not reply to this email. For support, contact us at the numbers above.
+                        </p>
+                        <div class="telugu-footer">
+                            <p>వజ్రాస్త్ర (ఏఐ కంట్రోలర్)</p>
+                            <p>ఆధునిక వ్యవసాయం కోసం స్మార్ట్ ఫార్మింగ్ సొల్యూషన్స్</p>
+                            <p>మీరు రైతు బడి ఎగ్రి షో 2026లో రిజిస్టర్ అయినందున ఈ ఇమెయిల్ పంపబడింది</p>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 11px;">
+                            © 2026 Theja Technologies Private Limited. All rights reserved.
+                        </p>
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

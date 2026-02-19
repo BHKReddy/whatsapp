@@ -1,0 +1,15 @@
+### Send a test form submission with new fields
+POST http://localhost:8080/webhook/submit
+Content-Type: application/json
+
+{
+    "name": "Jane User",
+    "phone": "919876543210",
+    "email": "jane@example.com",
+    "address": "Floor 2, Apartment 101",
+    "mandal": "Visakhapatnam Urban",
+    "district": "Visakhapatnam",
+    "state": "Andhra Pradesh",
+    "pincode": "530003",
+    "facingProblems": "Motor not starting since yesterday"
+}
