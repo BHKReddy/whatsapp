@@ -30,7 +30,7 @@ public class CouponServiceImpl implements CouponService {
         if (base.length() > 3) base = base.substring(0, 3);
         
         String uniquePart = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
-        String couponCode = "TT" + base + "-" + uniquePart;
+        String couponCode = base + "T-T" + uniquePart;
 
 
         // Correctly mapping fields from FormSubmission (DTO) to Submission (Entity)
