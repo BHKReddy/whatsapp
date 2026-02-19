@@ -163,17 +163,20 @@
             color: #D32F2F;
             margin-bottom: 15px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
         }
-
-        .detail-row {
-            display: flex;
+        
+        /* Table Styles for Details */
+        .details-table {
+            width: 100%;
+        }
+        
+        .details-table td {
             padding: 8px 0;
             border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
         }
-
-        .detail-row:last-child {
+        
+        .details-table tr:last-child td {
             border-bottom: none;
         }
 
@@ -208,27 +211,31 @@
             font-weight: 700;
         }
 
-        .offer-item {
-            display: flex;
-            align-items: center;
-            margin: 12px 0;
-            font-size: 15px;
+        .offer-table {
+            width: 100%;
+        }
+
+        .offer-table td {
+            padding: 8px 0;
+            vertical-align: top;
         }
 
         .offer-icon {
             color: #388E3C;
             font-size: 20px;
-            margin-right: 10px;
             font-weight: bold;
+            width: 30px;
         }
 
         .offer-text {
             color: #333;
+            font-size: 15px;
         }
 
         .offer-text-telugu {
             color: #666;
             font-size: 13px;
+            margin-top: 2px;
         }
 
         .offer-validity {
@@ -256,73 +263,33 @@
             font-weight: 600;
             text-align: center;
         }
+        
+        .benefits-table {
+            width: 100%;
+        }
+        
+        .benefits-table td {
+            padding: 8px 0;
+            vertical-align: top;
+        }
 
-        .benefit-item {
-            padding: 10px;
-            margin: 8px 0;
+        .benefit-item-container {
             background-color: white;
             border-radius: 5px;
             border-left: 3px solid #4CAF50;
+            padding: 10px;
             font-size: 14px;
             color: #333;
         }
 
-        /* Next Steps */
-        .steps-box {
-            background-color: #E3F2FD;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 25px 0;
-        }
-
-        .steps-title {
-            font-size: 18px;
-            color: #1976D2;
-            margin-bottom: 15px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .step-item {
-            display: flex;
-            align-items: flex-start;
-            margin: 15px 0;
-        }
-
-        .step-number {
-            background-color: #1976D2;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 16px;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        .step-text {
-            flex: 1;
-            font-size: 14px;
-            color: #333;
-            padding-top: 4px;
-        }
-
-        .step-text-telugu {
-            font-size: 13px;
-            color: #666;
-            margin-top: 3px;
-        }
+        /* Next Steps - Unused but kept for reference if needed, minimal styles */
 
         /* CTA Button */
         .cta-container {
             text-align: center;
             margin: 30px 0;
         }
-
+        
         .cta-button {
             display: inline-block;
             padding: 15px 40px;
@@ -415,18 +382,11 @@
                 font-size: 24px;
                 letter-spacing: 2px;
             }
-
-            .detail-row {
-                flex-direction: column;
-            }
-
+            
             .detail-label,
             .detail-value {
+                display: block;
                 width: 100%;
-            }
-
-            .detail-label {
-                margin-bottom: 5px;
             }
         }
     </style>
@@ -488,51 +448,45 @@
                             <div class="details-title">
                                 📋 Your Registration Details / మీ రిజిస్ట్రేషన్ వివరాలు
                             </div>
-
-                            <div class="detail-row">
-                                <div class="detail-label">👤 Name / పేరు:</div>
-                                <div class="detail-value">${name}</div>
-                            </div>
-
-                            <div class="detail-row">
-                                <div class="detail-label">📞 Phone / ఫోన్:</div>
-                                <div class="detail-value">${phone}</div>
-                            </div>
-
-                            <div class="detail-row">
-                                <div class="detail-label">📧 Email / ఇమెయిల్:</div>
-                                <div class="detail-value">${email}</div>
-                            </div>
-
-                            <div class="detail-row">
-                                <div class="detail-label">🏠 Address / చిరునామా:</div>
-                                <div class="detail-value">${address}</div>
-                            </div>
-
-                            <div class="detail-row">
-                                <div class="detail-label">📍 Mandal / మండలం:</div>
-                                <div class="detail-value">${mandal}</div>
-                            </div>
-
-                            <div class="detail-row">
-                                <div class="detail-label">🏛️ District / జిల్లా:</div>
-                                <div class="detail-value">${district}</div>
-                            </div>
-
-                            <div class="detail-row">
-                                <div class="detail-label">🗺️ State / రాష్ట్రం:</div>
-                                <div class="detail-value">${state}</div>
-                            </div>
-
-                            <div class="detail-row">
-                                <div class="detail-label">📮 Pincode / పిన్‌కోడ్:</div>
-                                <div class="detail-value">${pincode}</div>
-                            </div>
-
-                            <div class="detail-row">
-                                <div class="detail-label">⚠️ Current Problems / ప్రస్తుత సమస్యలు:</div>
-                                <div class="detail-value">${facingProblems}</div>
-                            </div>
+                            
+                            <table class="details-table" role="presentation" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="detail-label">👤 Name / పేరు:</td>
+                                    <td class="detail-value">${name}</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">📞 Phone / ఫోన్:</td>
+                                    <td class="detail-value">${phone}</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">📧 Email / ఇమెయిల్:</td>
+                                    <td class="detail-value">${email}</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">🏠 Address / చిరునామా:</td>
+                                    <td class="detail-value">${address}</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">📍 Mandal / మండలం:</td>
+                                    <td class="detail-value">${mandal}</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">🏛️ District / జిల్లా:</td>
+                                    <td class="detail-value">${district}</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">🗺️ State / రాష్ట్రం:</td>
+                                    <td class="detail-value">${state}</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">📮 Pincode / పిన్‌కోడ్:</td>
+                                    <td class="detail-value">${pincode}</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">⚠️ Current Problems / ప్రస్తుత సమస్యలు:</td>
+                                    <td class="detail-value">${facingProblems}</td>
+                                </tr>
+                            </table>
                         </div>
 
                         <div class="divider"></div>
@@ -544,45 +498,43 @@
                                 <span style="font-size: 18px;">ఎగ్జిబిషన్ స్పెషల్ ఆఫర్!</span>
                             </div>
 
-                            <div class="offer-item">
-                                <span class="offer-icon">✅</span>
-                                <div>
-                                    <div class="offer-text"><strong>₹2,000 Discount</strong> - Exhibition Price</div>
-                                    <div class="offer-text-telugu">₹2,000 తగ్గింపు - ఎగ్జిబిషన్ ధర</div>
-                                </div>
-                            </div>
-
-                            <div class="offer-item">
-                                <span class="offer-icon">✅</span>
-                                <div>
-                                    <div class="offer-text"><strong>FREE Installation</strong> - Worth ₹1,500</div>
-                                    <div class="offer-text-telugu">ఫ్రీ ఇన్‌స్టాలేషన్ - ₹1,500 విలువ</div>
-                                </div>
-                            </div>
-
-                            <div class="offer-item">
-                                <span class="offer-icon">✅</span>
-                                <div>
-                                    <div class="offer-text"><strong>2 Year Warranty</strong> - Extended Coverage</div>
-                                    <div class="offer-text-telugu">2 సంవత్సరాల వారంటీ - పొడిగించిన కవరేజ్</div>
-                                </div>
-                            </div>
-
-                            <div class="offer-item">
-                                <span class="offer-icon">✅</span>
-                                <div>
-                                    <div class="offer-text"><strong>24/7 Technical Support</strong> - Always Available</div>
-                                    <div class="offer-text-telugu">24/7 టెక్నికల్ సపోర్ట్ - ఎల్లప్పుడూ అందుబాటులో</div>
-                                </div>
-                            </div>
-
-                            <div class="offer-item">
-                                <span class="offer-icon">✅</span>
-                                <div>
-                                    <div class="offer-text"><strong>FREE SMS Alerts</strong> - Real-time Notifications</div>
-                                    <div class="offer-text-telugu">ఫ్రీ SMS అలర్ట్స్ - రియల్-టైమ్ నోటిఫికేషన్స్</div>
-                                </div>
-                            </div>
+                            <table class="offer-table" role="presentation" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="offer-icon">✅</td>
+                                    <td>
+                                        <div class="offer-text"><strong>₹5,000 Discount</strong> - Exhibition Price</div>
+                                        <div class="offer-text-telugu">₹5,000 తగ్గింపు - ఎగ్జిబిషన్ ధర</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="offer-icon">✅</td>
+                                    <td>
+                                        <div class="offer-text"><strong>FREE Installation</strong> - Worth ₹1,000</div>
+                                        <div class="offer-text-telugu">ఫ్రీ ఇన్‌స్టాలేషన్ - ₹1,000 విలువ</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="offer-icon">✅</td>
+                                    <td>
+                                        <div class="offer-text"><strong>2 Year Warranty</strong> - Extended Coverage</div>
+                                        <div class="offer-text-telugu">2 సంవత్సరాల వారంటీ - పొడిగించిన కవరేజ్</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="offer-icon">✅</td>
+                                    <td>
+                                        <div class="offer-text"><strong>24/7 Technical Support</strong> - Always Available</div>
+                                        <div class="offer-text-telugu">24/7 టెక్నికల్ సపోర్ట్ - ఎల్లప్పుడూ అందుబాటులో</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="offer-icon">✅</td>
+                                    <td>
+                                        <div class="offer-text"><strong>Internet subscription</strong> included for 2years worth ≅ ₹4000/-</div>
+                                        <div class="offer-text-telugu">సుమారు ₹4,000/- విలువచేసే 2 ఏళ్ల ఇంటర్నెట్ సబ్‌స్క్రిప్షన్ ఉచితంగా అందించబడును.</div>
+                                    </td>
+                                </tr>
+                            </table>
 
                             <div class="offer-validity">
                                 ⏰ Offer Valid: 20-21-22 February 2026<br>
@@ -598,30 +550,41 @@
                                 🌟 What You'll Get / మీకు లభించేవి 🌟
                             </div>
 
-                            <div class="benefit-item">
-                                📱 <strong>Mobile Control</strong> - Operate pump from anywhere using phone/tablet/computer<br>
-                                మొబైల్ నియంత్రణ - ఫోన్/ట్యాబ్లెట్/కంప్యూటర్ ఉపయోగించి ఎక్కడి నుండైనా పంపును నియంత్రించండి
-                            </div>
+                            <table class="benefits-table" role="presentation" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <div class="benefit-item-container">
+                                            📱 <strong>Mobile Control</strong> - Operate pump from anywhere using phone/tablet/computer<br>
+                                            మొబైల్ నియంత్రణ - ఫోన్/ట్యాబ్లెట్/కంప్యూటర్ ఉపయోగించి ఎక్కడి నుండైనా పంపును నియంత్రించండి
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="benefit-item-container">
+                                            🛡️ <strong>Auto Protection</strong> - Prevents motor damage from dry running & voltage fluctuations<br>
+                                            ఆటో ప్రొటెక్షన్ - డ్రై రన్నింగ్ & వోల్టేజ్ హెచ్చుతగ్గుల నుండి మోటార్ నష్టాన్ని నివారిస్తుంది
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="benefit-item-container">
+                                            ⏰ <strong>Timer Settings</strong> - Set automatic ON/OFF schedules<br>
+                                            టైమర్ సెట్టింగ్స్ - ఆటోమేటిక్ ON/OFF షెడ్యూల్స్ సెట్ చేయండి
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="benefit-item-container">
+                                            💡 <strong>Energy Saving</strong> - Reduces electricity wastage significantly<br>
+                                            ఎనర్జీ సేవింగ్ - విద్యుత్ వ్యర్థాన్ని గణనీయంగా తగ్గిస్తుంది
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
 
-                            <div class="benefit-item">
-                                🛡️ <strong>Auto Protection</strong> - Prevents motor damage from dry running & voltage fluctuations<br>
-                                ఆటో ప్రొటెక్షన్ - డ్రై రన్నింగ్ & వోల్టేజ్ హెచ్చుతగ్గుల నుండి మోటార్ నష్టాన్ని నివారిస్తుంది
-                            </div>
-
-                            <div class="benefit-item">
-                                ⏰ <strong>Timer Settings</strong> - Set automatic ON/OFF schedules<br>
-                                టైమర్ సెట్టింగ్స్ - ఆటోమేటిక్ ON/OFF షెడ్యూల్స్ సెట్ చేయండి
-                            </div>
-
-                            <div class="benefit-item">
-                                💡 <strong>Energy Saving</strong> - Reduces electricity wastage significantly<br>
-                                ఎనర్జీ సేవింగ్ - విద్యుత్ వ్యర్థాన్ని గణనీయంగా తగ్గిస్తుంది
-                            </div>
-
-                            <div class="benefit-item">
-                                📲 <strong>SMS Alerts</strong> - Get notified about pump status on your mobile<br>
-                                SMS అలర్ట్స్ - మీ మొబైల్‌లో పంపు స్థితి గురించి తెలియజేయబడతారు
-                            </div>
                         </div>
 
                         <div class="divider"></div>
@@ -667,7 +630,7 @@
                 <!-- Footer -->
                 <tr>
                     <td class="footer">
-                        <p><strong>Vajrastra(AI Controller)</strong></p>
+                        <p><strong>Vajrastra(AI field Controller)</strong></p>
                         <p>The device that thinks</p>
                         <p>Theja Technologies Private Limited</p>
                         <p>📧 hello@theja.in | 📞 +91 9000078933/ +91 8500930088</p>
@@ -676,7 +639,7 @@
                             Please do not reply to this email. For support, contact us at the numbers above.
                         </p>
                         <div class="telugu-footer">
-                            <p>వజ్రాస్త్ర (ఏఐ కంట్రోలర్)</p>
+                            <p>వజ్రాస్త్ర (ఏఐ ఫీల్డ్  కంట్రోలర్)</p>
                             <p>ఆధునిక వ్యవసాయం కోసం స్మార్ట్ ఫార్మింగ్ సొల్యూషన్స్</p>
                             <p>మీరు రైతు బడి ఎగ్రి షో 2026లో రిజిస్టర్ అయినందున ఈ ఇమెయిల్ పంపబడింది</p>
                         </div>
