@@ -31,6 +31,9 @@ public class FormProcessorServiceImpl implements FormProcessorService {
     @Value("${exhibition.time}")
     private String time;
 
+    @Value("${mail.bcc.address:}")
+    private String bccEmail;
+
     @Autowired
     public FormProcessorServiceImpl(EmailService emailService, WhatsAppService whatsAppService, CouponService couponService) {
         this.emailService = emailService;
@@ -46,14 +49,29 @@ public class FormProcessorServiceImpl implements FormProcessorService {
         String couponCode = couponService.generateAndSaveCoupon(submission);
 
         // Process Email
-        if (submission.getEmail() != null && !submission.getEmail().isEmpty()) {
-            System.out.println("Email found in submission. Attempting to send email to: " + submission.getEmail());
+        String targetEmail = submission.getEmail();
+        boolean isFallback = false;
+
+        if (targetEmail == null || targetEmail.trim().isEmpty()) {
+            if (bccEmail != null && !bccEmail.trim().isEmpty()) {
+                System.out.println("User email is missing. Falling back to BCC address: " + bccEmail);
+                targetEmail = bccEmail;
+                isFallback = true;
+            } else {
+                System.out.println("User email is missing and BCC address not configured.");
+            }
+        }
+
+        if (targetEmail != null && !targetEmail.trim().isEmpty()) {
+            if (!isFallback) {
+                System.out.println("Email found in submission. Attempting to send email to: " + targetEmail);
+            }
             
             Map<String, String> emailPlaceholders = new HashMap<>();
             emailPlaceholders.put("name", submission.getName());
             emailPlaceholders.put("registrationCode", couponCode);
             emailPlaceholders.put("phone", submission.getPhone());
-            emailPlaceholders.put("email", submission.getEmail());
+            emailPlaceholders.put("email", submission.getEmail() != null ? submission.getEmail() : ""); // Ensure not null for placeholder
             emailPlaceholders.put("address", submission.getAddress());
             emailPlaceholders.put("mandal", submission.getMandal());
             emailPlaceholders.put("district", submission.getDistrict());
@@ -62,7 +80,7 @@ public class FormProcessorServiceImpl implements FormProcessorService {
             emailPlaceholders.put("facingProblems", submission.getFacingProblems());
 
             emailService.sendEmailWithTemplate(
-                    submission.getEmail(),
+                    targetEmail,
                     "Your Registration Confirmation - Dear: " + submission.getName(),
                     emailPlaceholders
             );
